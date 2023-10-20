@@ -1,11 +1,3 @@
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-
-
-import javax.naming.directory.SearchResult;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.*;
@@ -13,13 +5,15 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws GeneralSecurityException, IOException {
-        String apiKey = "AIzaSyDJ_iUELWlmMNW6qSXO9FdBDZGmu65oUzs";
-        String filePath = "data/songs1.txt";
-        VideoSearch vs = new VideoSearch();
+        String filePath = "data/songs1.txt";//only used for getting song titles from text file
+
         GameRunnerFromMap gameRunnerFromMap = new GameRunnerFromMap();
         GameRunnerFromTextFile gameRunnerFromTextFile = new GameRunnerFromTextFile();
+
+        VideoSearch vs = new VideoSearch();
         HashMap<String, String> videoMap = vs.getVideoMap();
-//      comment these lines out to switch between youtube api call and getting titles from text file
+
+//      comment these lines out to switch between YouTube API call and getting song titles from text file
         ArrayList<Map.Entry<String, String>> entryArrayList = new ArrayList<>(videoMap.entrySet());
 //        ArrayList<String> entryArrayList = new ArrayList<>(TextFileReader.readLinesFromFile(filePath));
 
