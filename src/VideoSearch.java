@@ -151,7 +151,7 @@ public class VideoSearch {
 
         // Execute the playlist items request and get the video
         PlaylistItemListResponse playlistResponse = playlistItemsRequest.execute();
-        for(int i=0; i<playlistResponse.size(); i++){
+        for(int i=0; i<playlistResponse.getItems().size(); i++){
             PlaylistItem videoItem = playlistResponse.getItems().get(i);
             String videoTitle = videoItem.getSnippet().getTitle();
             String videoId = videoItem.getSnippet().getResourceId().getVideoId();

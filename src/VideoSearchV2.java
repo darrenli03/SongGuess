@@ -73,9 +73,10 @@ public class VideoSearchV2 {
         YouTube youtubeService = getService();
         // Define and execute the API request
         YouTube.PlaylistItems.List request = youtubeService.playlistItems()
-                .list(Collections.singletonList("snippet,contentDetails"));
-        PlaylistItemListResponse response = request.setMaxResults(25L)
-                .setPlaylistId("PLBCF2DAC6FFB574DE")
+                .list(Collections.singletonList("snippet"));
+        PlaylistItemListResponse response = request.setMaxResults(250L)
+                .setPlaylistId("PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
+                .setKey("AIzaSyDJ_iUELWlmMNW6qSXO9FdBDZGmu65oUzs")
                 .execute();
         System.out.println(response);
     }

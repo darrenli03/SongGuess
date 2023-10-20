@@ -22,50 +22,55 @@ public class Main {
         VideoSearch vs = new VideoSearch();
         HashMap<String, String> videoMap = vs.getVideoMap();
 //      comment these lines out to switch between youtube api call and getting titles from text file
-//        ArrayList<Map.Entry<String,String>> entryHashSet = new ArrayList<>(videoMap.entrySet());
-        ArrayList<String> entryArrayList = new ArrayList<>(TextFileReader.readLinesFromFile(filePath));
+        ArrayList<Map.Entry<String,String>> entryArrayList = new ArrayList<>(videoMap.entrySet());
+//        ArrayList<String> entryArrayList = new ArrayList<>(TextFileReader.readLinesFromFile(filePath));
 
         System.out.println(entryArrayList.size());
         Collections.shuffle(entryArrayList);
 
-        for(String entry : entryArrayList) {
-            System.out.println("answer is: " + entry);
-            System.out.println("Playing song... guess it");
+//        System.out.println(entryArrayList.size());
+//        Collections.shuffle(entryArrayList);
 
-            String userAnswer = scanner.nextLine();
+//        for(String entry : entryArrayList) {
+//            System.out.println("answer is: " + entry);
+//            System.out.println("Playing song... guess it");
+//
+//            String userAnswer = scanner.nextLine();
+//
+//            if(userAnswer.equals("/end")){
+//                System.out.println("your total score: " + finalScore);
+//                System.exit(0);
+//            }
+//
+//            double num = 0.0;
+//            while(num == 0.0) {
+//                double scoreThisRound = instance.countPoints(entry, userAnswer );
+//                if(scoreThisRound==0){
+//                    System.out.println("That is not the song, try again!");
+//                    System.out.println();
+//                } else {
+//                    num = scoreThisRound;
+//                    finalScore += scoreThisRound;
+//
+//                }
+//            }
+//
+//            System.out.println("points this round: " + num);
+//            System.out.println();
+//        }
+//        System.out.println("your total score: " + finalScore);
 
-            if(userAnswer.equals("/end")){
-                System.out.println("your total score: " + finalScore);
-                break;
-            }
-
-            double num = 0.0;
-            while(num == 0.0) {
-                double scoreThisRound = instance.countPoints(entry, userAnswer );
-                if(scoreThisRound==0){
-                    System.out.println("That is not the song, try again!");
-                    System.out.println();
-                } else {
-                    num = scoreThisRound;
-                    finalScore += scoreThisRound;
-
-                }
-            }
-
-            System.out.println("points this round: " + num);
-            System.out.println();
-        }
-        System.out.println("your total score: " + finalScore);
-
-        /* code for youtube api and map
-        for(Map.Entry<String, String> entry : entryHashSet) {
+        // code for youtube api and map
+        for(Map.Entry<String, String> entry : entryArrayList) {
             System.out.println("videoID is: " + entry.getKey());
             System.out.println("Video Title is: " + entry.getValue());
 
             System.out.println("Playing song... guess it");
 
+
             double num = 0.0;
             while(num == 0.0) {
+
                 double scoreThisRound = instance.countPoints(entry.getValue(), scanner.nextLine());
                 if(scoreThisRound==0){
                     System.out.println("That is not the song, try again!");
@@ -81,7 +86,7 @@ public class Main {
             System.out.println();
         }
         System.out.println("your total score: " + finalScore);
-         */
+
 
     }
 
