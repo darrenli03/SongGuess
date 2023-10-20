@@ -13,80 +13,21 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws GeneralSecurityException, IOException {
-        AnswerCheck instance = new AnswerCheck();
-        Scanner scanner = new Scanner(System.in);
-        double finalScore = 0;
-
         String apiKey = "AIzaSyDJ_iUELWlmMNW6qSXO9FdBDZGmu65oUzs";
         String filePath = "data/songs1.txt";
         VideoSearch vs = new VideoSearch();
+        GameRunnerFromMap gameRunnerFromMap = new GameRunnerFromMap();
+        GameRunnerFromTextFile gameRunnerFromTextFile = new GameRunnerFromTextFile();
         HashMap<String, String> videoMap = vs.getVideoMap();
 //      comment these lines out to switch between youtube api call and getting titles from text file
-        ArrayList<Map.Entry<String,String>> entryArrayList = new ArrayList<>(videoMap.entrySet());
+        ArrayList<Map.Entry<String, String>> entryArrayList = new ArrayList<>(videoMap.entrySet());
 //        ArrayList<String> entryArrayList = new ArrayList<>(TextFileReader.readLinesFromFile(filePath));
 
-        System.out.println(entryArrayList.size());
+        System.out.println("number of entries: " + entryArrayList.size());
         Collections.shuffle(entryArrayList);
-
-//        System.out.println(entryArrayList.size());
-//        Collections.shuffle(entryArrayList);
-
-//        for(String entry : entryArrayList) {
-//            System.out.println("answer is: " + entry);
-//            System.out.println("Playing song... guess it");
-//
-//            String userAnswer = scanner.nextLine();
-//
-//            if(userAnswer.equals("/end")){
-//                System.out.println("your total score: " + finalScore);
-//                System.exit(0);
-//            }
-//
-//            double num = 0.0;
-//            while(num == 0.0) {
-//                double scoreThisRound = instance.countPoints(entry, userAnswer );
-//                if(scoreThisRound==0){
-//                    System.out.println("That is not the song, try again!");
-//                    System.out.println();
-//                } else {
-//                    num = scoreThisRound;
-//                    finalScore += scoreThisRound;
-//
-//                }
-//            }
-//
-//            System.out.println("points this round: " + num);
-//            System.out.println();
-//        }
-//        System.out.println("your total score: " + finalScore);
-
-        // code for youtube api and map
-        for(Map.Entry<String, String> entry : entryArrayList) {
-            System.out.println("videoID is: " + entry.getKey());
-            System.out.println("Video Title is: " + entry.getValue());
-
-            System.out.println("Playing song... guess it");
-
-
-            double num = 0.0;
-            while(num == 0.0) {
-
-                double scoreThisRound = instance.countPoints(entry.getValue(), scanner.nextLine());
-                if(scoreThisRound==0){
-                    System.out.println("That is not the song, try again!");
-                    System.out.println();
-                } else {
-                    num = scoreThisRound;
-                    finalScore += scoreThisRound;
-
-                }
-            }
-
-            System.out.println("points this round: " + num);
-            System.out.println();
-        }
-        System.out.println("your total score: " + finalScore);
-
+//        comment these lines out to switch between running game from ArrayList of Map.Entry<String,String> or ArrayList<String>
+        gameRunnerFromMap.runGameFromMap(entryArrayList);
+//        gameRunnerFromTextFile.runGameFromTextFile(entryArrayList);
 
     }
 
