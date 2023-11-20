@@ -23,11 +23,7 @@ public class AnswerCheck {
             }
         }
 
-//        System.out.print("answerWordsSet: ");
-//        for (String value : answerWordsSet) {
-//            System.out.print(value + " ");
-//        }
-//        System.out.println();
+//        printAnswerWords(answerWordsSet);
 
         for(String s : inputWords){
             if(answerWordsSet.contains(s)){
@@ -41,10 +37,17 @@ public class AnswerCheck {
             System.out.print(value + " ");
         }
         System.out.println("");
-        for(int i=0;i< correctInputWords.size();i++){
-            points+=1;
-        }
+
+        points += correctInputWords.size();
 
         return points;
+    }
+
+    public void printAnswerWords(HashSet<String> answerWordsSet){
+        System.out.print("answerWordsSet: ");
+        for (String value : answerWordsSet) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
     }
 }

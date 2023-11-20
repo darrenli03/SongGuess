@@ -14,8 +14,9 @@ import java.util.HashMap;
 
 public class VideoSearch {
     PlaylistItemListResponse playlistResponse;
+
     /**
-     *Initializes a VideoSearch object that uses the YouTube API to get a list of videos from the playlist specified by String playlistId.
+     * Initializes a VideoSearch object that uses the YouTube API to get a list of videos from the playlist specified by String playlistId.
      */
     public VideoSearch() throws IOException, GeneralSecurityException {
         String apiKey = "AIzaSyDJ_iUELWlmMNW6qSXO9FdBDZGmu65oUzs"; // YouTube API key for authenticating the request
@@ -36,14 +37,15 @@ public class VideoSearch {
         playlistItemsRequest.setMaxResults(50L); // Set the number of videos to retrieve, max 50
 
         // Execute the playlist items request
-         playlistResponse = playlistItemsRequest.execute();
+        playlistResponse = playlistItemsRequest.execute();
     }
 
     /**
-     * takes the videos from class variable playlistResponse and puts each video's ID and title into a HashMap
-     * @return a HashMap in which the keys are Strings that represents a video ID and their corresponding values are a String that represents the video title
+     * Takes the videos from class variable playlistResponse and puts each video's ID and title into a HashMap
+     *
+     * @return a HashMap in which the keys are Strings that represents a video ID and their corresponding values are Strings that represents the video's title
      */
-    public HashMap<String, String> getVideoMap(){
+    public HashMap<String, String> getVideoMap() {
         HashMap<String, String> output = new HashMap<>();
 
         for (int i = 0; i < playlistResponse.getItems().size(); i++) {
@@ -56,16 +58,13 @@ public class VideoSearch {
 
         return output;
     }
+
     public String getVideoID(int playlistItemNumber) {
         PlaylistItem videoItem = playlistResponse.getItems().get(playlistItemNumber);
 
-        // stores video details
-        String videoTitle = videoItem.getSnippet().getTitle();
-        String videoId = videoItem.getSnippet().getResourceId().getVideoId();
+        String videoID = videoItem.getSnippet().getResourceId().getVideoId();
 
-        String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
-
-        return videoId;
+        return videoID;
     }
 
     public String getVideoTitle(int playlistItemNumber) {
@@ -74,10 +73,17 @@ public class VideoSearch {
 
         // Retrieve video details
         String videoTitle = videoItem.getSnippet().getTitle();
-        String videoId = videoItem.getSnippet().getResourceId().getVideoId();
-        String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
 
         return videoTitle;
+    }
+
+    public String getVideoURL(int playlistItemNumber) {
+        PlaylistItem videoItem = playlistResponse.getItems().get(playlistItemNumber);
+
+        String videoId = videoItem.getSnippet().getResourceId().getVideoId();
+        String videoURL = "https://www.youtube.com/watch?v=" + videoId;
+
+        return videoURL;
     }
 
     /*
