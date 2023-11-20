@@ -3,13 +3,10 @@ import java.security.GeneralSecurityException;
 import java.util.*;
 
 public class Main {
-
     public static void main(String[] args) throws GeneralSecurityException, IOException {
         String filePath = "data/songs1.txt";//only used for getting song titles from text file
-
-        GameRunnerFromMap gameRunnerFromMap = new GameRunnerFromMap();
         GameRunnerFromTextFile gameRunnerFromTextFile = new GameRunnerFromTextFile();
-
+        GameRunnerFromMap gameRunnerFromMap = new GameRunnerFromMap();
         VideoSearch vs = new VideoSearch();
         HashMap<String, String> videoMap = vs.getVideoMap();
 
