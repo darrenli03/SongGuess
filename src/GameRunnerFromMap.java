@@ -26,7 +26,6 @@ public class GameRunnerFromMap {
                 double scoreThisRound = instance.countPoints(entry.getValue(), userInput);
                 if (scoreThisRound == 0) {
                     System.out.println("That is not the song, try again!");
-                    System.out.println();
                 } else {
                     num = scoreThisRound;
                     finalScore += scoreThisRound;
@@ -38,5 +37,10 @@ public class GameRunnerFromMap {
             System.out.println();
         }
         System.out.println("your total score: " + finalScore);
+    }
+
+    public void playSong(String videoID){
+        String videoURL = "https://www.youtube.com/watch?v=" + videoID;
+
     }
 }
